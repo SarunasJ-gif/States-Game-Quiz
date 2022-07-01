@@ -24,13 +24,10 @@ while quiz_on:
         state_place = NameTable(user_answer)
         state_place.coordinates(x_cor, y_cor)
     elif user_answer == "Exit":
-        unknown_states_names = []
-        for name in states_names:
-            if name not in correct_states:
-                unknown_states_names.append(name)
+        unknown_states_names = [name for name in states_names if name not in correct_states]
         dict_of_states = {"name": unknown_states_names}
         dict_to_dataframe = pandas.DataFrame(dict_of_states)
-        dict_to_dataframe.to_csv("states_must_learn")
+        dict_to_dataframe.to_csv("states_must_learn.csv")
         quiz_on = False
 
     if len(correct_states) == len(data):
